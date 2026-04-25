@@ -512,8 +512,8 @@ function FeatureArtwork() {
     <div className="relative mt-10 min-h-56 overflow-hidden rounded-[1.75rem] border border-white/8 bg-black/18 p-5">
       <div className="absolute -right-10 top-0 h-40 w-40 rounded-full bg-primary/18 blur-3xl" />
       <div className="absolute -bottom-8 left-8 h-32 w-32 rounded-full bg-secondary/18 blur-3xl" />
-      <div className="relative grid gap-4 md:grid-cols-[1.05fr_0.95fr]">
-        <div className="rounded-[1.4rem] border border-white/8 bg-surface-container p-4">
+      <div className="relative grid min-w-0 gap-4 md:grid-cols-[1.05fr_0.95fr]">
+        <div className="min-w-0 rounded-[1.4rem] border border-white/8 bg-surface-container p-4">
           <div className="flex items-center justify-between border-b border-white/8 pb-3">
             <div>
               <p className="font-heading text-lg text-white">Invoice Draft</p>
@@ -530,9 +530,9 @@ function FeatureArtwork() {
               ["Due Date", "24 Okt 2024"],
               ["Subtotal", "Rp 4.500.000"],
             ].map(([label, value]) => (
-              <div key={label} className="flex items-center justify-between text-sm">
+              <div key={label} className="flex min-w-0 items-center justify-between gap-3 text-sm">
                 <span className="text-on-surface-variant">{label}</span>
-                <span className="text-white">{value}</span>
+                <span className="min-w-0 text-right text-white">{value}</span>
               </div>
             ))}
           </div>
@@ -541,11 +541,11 @@ function FeatureArtwork() {
               <span>Methods</span>
               <span>Auto-enabled</span>
             </div>
-            <div className="mt-3 flex gap-3">
+            <div className="mt-3 grid gap-3 sm:grid-cols-3">
               {paymentMethods.map((method) => (
                 <div
                   key={method.label}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-white/8 bg-black/18 px-3 py-3 text-sm text-white"
+                  className="flex min-w-0 items-center justify-center gap-2 rounded-2xl border border-white/8 bg-black/18 px-3 py-3 text-sm text-white"
                 >
                   <Icon className={`h-4 w-4 ${method.tone}`} name={method.icon} />
                   <span>{method.label}</span>
@@ -554,7 +554,7 @@ function FeatureArtwork() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between gap-4">
+        <div className="min-w-0 flex flex-col justify-between gap-4">
           <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.04] p-4">
             <p className="text-xs uppercase tracking-[0.2em] text-on-surface-variant">
               Workflow
@@ -693,8 +693,8 @@ function FeaturesSection() {
         description="Setiap section dirancang untuk membantu Anda mengirim, memantau, dan menagih tanpa drama administratif."
       />
       <div className="mt-14 grid gap-6 md:grid-cols-12">
-        <article className="glass-panel md:col-span-8 rounded-[2rem] p-6 sm:p-8">
-          <div className="max-w-xl">
+        <article className="glass-panel min-w-0 overflow-hidden md:col-span-8 rounded-[2rem] p-6 sm:p-8">
+          <div className="max-w-xl min-w-0">
             <div className={`feature-icon ${toneClasses[primaryFeature.tone]}`}>
               <Icon className="h-7 w-7" name={primaryFeature.icon} />
             </div>
@@ -714,7 +714,7 @@ function FeaturesSection() {
         {[whatsappFeature, trackingFeature].map((feature) => (
           <article
             key={feature.id}
-            className="glass-panel md:col-span-4 rounded-[2rem] p-6 sm:p-8"
+            className="glass-panel min-w-0 overflow-hidden md:col-span-4 rounded-[2rem] p-6 sm:p-8"
           >
             <div className={`feature-icon ${toneClasses[feature.tone]}`}>
               <Icon className="h-7 w-7" name={feature.icon} />
@@ -794,9 +794,9 @@ function FeaturesSection() {
           </article>
         ))}
 
-        <article className="glass-panel md:col-span-8 rounded-[2rem] p-6 sm:p-8">
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div>
+        <article className="glass-panel min-w-0 overflow-hidden md:col-span-8 rounded-[2rem] p-6 sm:p-8">
+          <div className="grid min-w-0 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div className="min-w-0">
               <div className={`feature-icon ${toneClasses[paymentFeature.tone]}`}>
                 <Icon className="h-7 w-7" name={paymentFeature.icon} />
               </div>
