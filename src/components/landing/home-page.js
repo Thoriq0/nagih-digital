@@ -954,7 +954,7 @@ function Footer() {
 
 export function LandingPage() {
   return (
-    <div id="top" className="relative isolate">
+    <div id="top" className="relative isolate overflow-x-clip">
       <ScrollEffectsLoader />
       <a
         href="#content"

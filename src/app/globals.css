@@ -63,10 +63,16 @@
   html,
   body {
     min-height: 100%;
+    width: 100%;
+    max-width: 100%;
     background-color: #060e20;
+    overflow-x: clip;
   }
 
-  * {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
     border-color: rgb(255 255 255 / 0.08);
   }
 
@@ -79,7 +85,7 @@
   body {
     position: relative;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: clip;
     color: var(--foreground);
     font-family: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
     isolation: isolate;
