@@ -1,26 +1,321 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0b1326;
+  --foreground: #dae2fd;
+  --surface: #0b1326;
+  --surface-dim: #10192b;
+  --surface-lowest: #060e20;
+  --surface-low: #131b2e;
+  --surface-container: #171f33;
+  --surface-high: #222a3d;
+  --surface-highest: #2d3449;
+  --surface-bright: #31394d;
+  --on-surface: #dae2fd;
+  --on-surface-variant: #c7c4d7;
+  --primary: #c0c1ff;
+  --on-primary: #1000a9;
+  --primary-container: #8083ff;
+  --secondary: #4fdbc8;
+  --secondary-container: #04b4a2;
+  --tertiary: #ffb2b7;
+  --tertiary-container: #ff516a;
+  --error: #ffb4ab;
+  --error-container: #93000a;
+  --outline: #908fa0;
+  --container-max: 80rem;
+  --scroll-y: 0px;
+  --scroll-y-soft: 0px;
+  --scroll-tilt: 0deg;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-lowest: var(--surface-lowest);
+  --color-surface-low: var(--surface-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-high: var(--surface-high);
+  --color-surface-highest: var(--surface-highest);
+  --color-surface-bright: var(--surface-bright);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-error: var(--error);
+  --color-error-container: var(--error-container);
+  --color-outline: var(--outline);
+  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Space Grotesk", "Space Grotesk Fallback", ui-sans-serif,
+    system-ui, sans-serif;
+  --font-mono: "SFMono-Regular", ui-monospace, "Cascadia Code", "Source Code Pro",
+    Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html,
+  body {
+    min-height: 100%;
+    background-color: #060e20;
+  }
+
+  * {
+    border-color: rgb(255 255 255 / 0.08);
+  }
+
+  html {
+    min-height: 100%;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--foreground);
+    font-family: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+    isolation: isolate;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at top left, rgb(128 131 255 / 0.16), transparent 34%),
+      radial-gradient(circle at 80% 18%, rgb(79 219 200 / 0.12), transparent 28%),
+      linear-gradient(180deg, #0b1326 0%, #09111f 52%, #060e20 100%);
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  a,
+  button,
+  input {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: rgb(128 131 255 / 0.24);
+    color: #f8f8ff;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .section-shell {
+    width: min(100%, var(--container-max));
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .section-pad {
+    padding-block: clamp(4.5rem, 8vw, 7.5rem);
+  }
+
+  .sr-anchor {
+    scroll-margin-top: 5.5rem;
+  }
+
+  .glass-panel {
+    position: relative;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0.02)),
+      rgb(11 19 38 / 0.72);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.06),
+      0 30px 80px rgb(4 10 26 / 0.28);
+    backdrop-filter: blur(18px);
+  }
+
+  .hero-shell {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.03), rgb(255 255 255 / 0.015)),
+      rgb(11 19 38 / 0.78);
+    padding: clamp(1rem, 3vw, 1.5rem);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.06),
+      0 34px 100px rgb(4 10 26 / 0.34);
+    backdrop-filter: blur(24px);
+  }
+
+  .skeleton-surface {
+    position: relative;
+    overflow: hidden;
+    background: rgb(255 255 255 / 0.04);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+  }
+
+  .skeleton-surface::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(255 255 255 / 0.05),
+      transparent
+    );
+    animation: skeleton-shimmer 1.8s ease-in-out infinite;
+  }
+
+  .primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    border-radius: 1rem;
+    background:
+      linear-gradient(180deg, rgb(225 224 255 / 0.92), rgb(128 131 255 / 0.96)),
+      var(--primary-container);
+    padding: 0.95rem 1.35rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--on-primary);
+    box-shadow: 0 20px 45px rgb(128 131 255 / 0.22);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      opacity 180ms ease;
+  }
+
+  .primary-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 24px 48px rgb(128 131 255 / 0.26);
+  }
+
+  .secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    border-radius: 1rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(255 255 255 / 0.04);
+    padding: 0.95rem 1.35rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #eef2ff;
+    backdrop-filter: blur(18px);
+    transition:
+      background-color 180ms ease,
+      transform 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .secondary-button:hover {
+    transform: translateY(-1px);
+    border-color: rgb(255 255 255 / 0.16);
+    background: rgb(255 255 255 / 0.08);
+  }
+
+  .feature-icon {
+    display: inline-flex;
+    height: 3.25rem;
+    width: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    background: rgb(255 255 255 / 0.04);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tilt-card {
+    perspective: 1400px;
+    --rotate-x: 0deg;
+    --rotate-y: 0deg;
+    --card-lift: 0px;
+    --glow-x: 50%;
+    --glow-y: 50%;
+  }
+
+  .tilt-card-inner {
+    transform-style: preserve-3d;
+    transform:
+      rotateX(var(--rotate-x))
+      rotateY(var(--rotate-y))
+      translateY(var(--card-lift));
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease;
+    will-change: transform;
+  }
+
+  .tilt-card:hover .tilt-card-inner {
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.06),
+      0 42px 100px rgb(4 10 26 / 0.34);
+    border-color: rgb(255 255 255 / 0.14);
+  }
+
+  .translate-z-6 {
+    transform: translateZ(48px);
+  }
+
+  .parallax-drift {
+    transform: translate3d(0, var(--scroll-y), 0);
+    will-change: transform;
+  }
+
+  .parallax-soft {
+    transform: translate3d(0, var(--scroll-y-soft), 0) rotate(var(--scroll-tilt));
+    will-change: transform;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+
+  .tilt-card-inner,
+  .translate-z-6,
+  .parallax-drift,
+  .parallax-soft {
+    transform: none !important;
+  }
 }
