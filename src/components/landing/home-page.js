@@ -217,10 +217,10 @@ function MenuIcon({ className = "h-5 w-5" }) {
 function TopNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/8 bg-[rgba(6,14,32,0.72)] backdrop-blur-xl">
-      <div className="section-shell flex h-[4.5rem] items-center justify-between gap-6">
+      <div className="section-shell flex h-[4.5rem] items-center justify-between gap-3 sm:gap-6">
         <a
           href="#top"
-          className="font-heading text-lg font-bold tracking-[-0.04em] text-white"
+          className="min-w-0 flex-1 truncate font-heading text-base font-bold tracking-[-0.04em] text-white sm:flex-none sm:text-lg"
         >
           NagihClient
         </a>
@@ -245,9 +245,14 @@ function TopNav() {
           <PrimaryLink href="#pricing">Get Started</PrimaryLink>
         </div>
         <div className="flex items-center gap-2 md:hidden">
-          <PrimaryLink href="#pricing">Get Started</PrimaryLink>
+          <a
+            href="#pricing"
+            className="inline-flex items-center justify-center rounded-2xl bg-primary px-4 py-3 text-sm font-semibold text-on-primary shadow-[0_16px_35px_rgba(128,131,255,0.22)]"
+          >
+            Start
+          </a>
           <details className="group relative">
-            <summary className="flex h-11 w-11 list-none items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-on-surface-variant transition-colors hover:text-white [&::-webkit-details-marker]:hidden">
+            <summary className="flex h-10 w-10 shrink-0 list-none items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-on-surface-variant transition-colors hover:text-white [&::-webkit-details-marker]:hidden">
               <MenuIcon />
             </summary>
             <div className="absolute right-0 top-[calc(100%+0.75rem)] w-64 rounded-[1.5rem] border border-white/10 bg-[rgba(6,14,32,0.96)] p-3 shadow-[0_20px_50px_rgba(2,8,20,0.45)] backdrop-blur-xl">
