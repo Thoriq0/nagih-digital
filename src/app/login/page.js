@@ -40,7 +40,7 @@ export default function LoginPage() {
         <div className="absolute bottom-[-8rem] left-1/3 h-[20rem] w-[20rem] rounded-full bg-tertiary/10 blur-3xl" />
       </div>
 
-      <header className="section-shell flex items-center justify-between py-6">
+      <header className="section-shell flex flex-col items-start justify-between gap-3 py-6 sm:flex-row sm:items-center">
         <Link
           href="/"
           className="font-heading text-lg font-bold tracking-[-0.04em] text-white"
@@ -49,7 +49,7 @@ export default function LoginPage() {
         </Link>
         <Link
           href="/"
-          className="inline-flex items-center rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-on-surface-variant transition-colors hover:text-white"
+          className="inline-flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-on-surface-variant transition-colors hover:text-white sm:w-auto"
         >
           Kembali ke landing page
         </Link>
@@ -97,7 +97,7 @@ export default function LoginPage() {
           </div>
 
           <div className="glass-panel rounded-[2rem] p-6 sm:p-8 lg:p-10">
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.2em] text-on-surface-variant">
                   Member Access
@@ -123,7 +123,7 @@ export default function LoginPage() {
                 type="password"
               />
 
-              <div className="flex items-center justify-between gap-4 text-sm">
+              <div className="flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
                 <label className="flex items-center gap-3 text-on-surface-variant">
                   <input
                     className="h-4 w-4 rounded border-white/10 bg-surface-container accent-primary"

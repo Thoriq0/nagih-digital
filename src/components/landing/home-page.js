@@ -195,6 +195,25 @@ function SecondaryLink({ href, children, icon }) {
   );
 }
 
+function MenuIcon({ className = "h-5 w-5" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.8"
+      viewBox="0 0 24 24"
+    >
+      <path d="M4 7h16" />
+      <path d="M4 12h16" />
+      <path d="M4 17h16" />
+    </svg>
+  );
+}
+
 function TopNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/8 bg-[rgba(6,14,32,0.72)] backdrop-blur-xl">
@@ -216,14 +235,47 @@ function TopNav() {
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="hidden items-center gap-3 md:flex">
           <Link
             href="/login"
-            className="hidden text-sm font-medium text-on-surface-variant transition-colors hover:text-white sm:inline-flex"
+            className="text-sm font-medium text-on-surface-variant transition-colors hover:text-white"
           >
             Login
           </Link>
           <PrimaryLink href="#pricing">Get Started</PrimaryLink>
+        </div>
+        <div className="flex items-center gap-2 md:hidden">
+          <PrimaryLink href="#pricing">Get Started</PrimaryLink>
+          <details className="group relative">
+            <summary className="flex h-11 w-11 list-none items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-on-surface-variant transition-colors hover:text-white [&::-webkit-details-marker]:hidden">
+              <MenuIcon />
+            </summary>
+            <div className="absolute right-0 top-[calc(100%+0.75rem)] w-64 rounded-[1.5rem] border border-white/10 bg-[rgba(6,14,32,0.96)] p-3 shadow-[0_20px_50px_rgba(2,8,20,0.45)] backdrop-blur-xl">
+              <nav className="flex flex-col gap-1">
+                {navItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="rounded-xl px-3 py-3 text-sm font-medium text-on-surface-variant transition-colors hover:bg-white/[0.05] hover:text-white"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+                <Link
+                  href="/login"
+                  className="rounded-xl px-3 py-3 text-sm font-medium text-on-surface-variant transition-colors hover:bg-white/[0.05] hover:text-white"
+                >
+                  Login
+                </Link>
+                <a
+                  href="#pricing"
+                  className="mt-2 inline-flex items-center justify-center rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-on-primary shadow-[0_16px_35px_rgba(128,131,255,0.22)]"
+                >
+                  Get Started
+                </a>
+              </nav>
+            </div>
+          </details>
         </div>
       </div>
     </header>
